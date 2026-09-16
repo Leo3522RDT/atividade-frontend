@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entrar — StudioCorte</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="login-page">
+    <div class="login-card">
+      <div class="login-logo">
+        <div class="icon">S</div>
+        <h1>StudioCorte</h1>
+        <div class="line"></div>
+      </div>
+
+      <h2>Entrar na Conta</h2>
+      <p class="subtitle">Acesse sua conta para continuar</p>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label>E-mail</label>
+          <div class="input-icon">
+            <span class="icon-left">✉</span>
+            <input type="email" id="email" placeholder="seu@email.com" required value="admin@studiocorte.com" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Senha</label>
+          <div class="input-icon">
+            <span class="icon-left">🔒</span>
+            <input type="password" id="password" placeholder="Sua senha" required value="demo123" />
+            <button type="button" class="toggle-pass" id="togglePass" title="Mostrar senha">👁</button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary">Entrar</button>
+      </form>
+
+      <p class="forgot" id="forgotBtn" style="cursor:pointer">Esqueci minha senha</p>
+
+      <div class="demo-box">
+        <div class="label">Contas para demonstração</div>
+        <div class="demo-user" style="margin-bottom:10px;cursor:pointer" onclick="document.getElementById('email').value='admin@studiocorte.com';document.getElementById('password').value='demo123'">
+          <div class="avatar">👤</div>
+          <div class="info">
+            <strong>Admin Demo</strong>
+            <span>admin@studiocorte.com / demo123</span>
+          </div>
+        </div>
+        <div class="demo-user" style="cursor:pointer" onclick="document.getElementById('email').value='lucas.almeida@email.com';document.getElementById('password').value='cliente123'">
+          <div class="avatar">🧑</div>
+          <div class="info">
+            <strong>Cliente Demo (Lucas)</strong>
+            <span>lucas.almeida@email.com / cliente123</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Esqueci Senha -->
+  <div class="modal-overlay" id="forgotModal">
+    <div class="modal">
+      <h3>Recuperação de Senha</h3>
+      <p style="font-size:14px;color:#a1a1aa;margin-bottom:16px;line-height:1.6">
+        Informe o e-mail cadastrado. Enviaremos as instruções de recuperação.
+      </p>
+      <div class="form-group">
+        <label>E-mail</label>
+        <input type="email" id="forgotEmail" placeholder="seu@email.com" />
+      </div>
+      <div class="actions">
+        <button type="button" class="btn-secondary" id="cancelForgot">Cancelar</button>
+        <button type="button" class="btn-primary" style="width:auto;padding:10px 20px" id="sendForgot">Enviar solicitação</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Sucesso -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal" style="text-align:center">
+      <div style="font-size:48px;margin-bottom:12px">✅</div>
+      <h3>Solicitação enviada!</h3>
+      <p style="font-size:14px;color:#a1a1aa;margin:16px 0;line-height:1.7">
+        O relatório/pedido de recuperação de senha foi enviado para o proprietário do StudioCorte.<br><br>
+        Ele responderá por meio dos contatos permitidos para receber notificações importantes (e-mail e WhatsApp cadastrados).
+      </p>
+      <button class="btn-primary" style="width:auto;padding:10px 24px" id="closeSuccess">Entendi</button>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    if (SC.isLoggedIn()) {
+      const user = SC.getUser();
+      if (user.role === 'admin') location.href = 'admin/dashboard.html';
+      else location.href = 'cliente/perfil.html';
+    }
+
+    document.getElementById('togglePass').addEventListener('click', function () {
+      const input = document.getElementById('password');
+      input.type = input.type === 'password' ? 'text' : 'password';
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      if (SC.login(email, password)) {
+        SC.showToast('Login realizado com sucesso!');
+        const user = SC.getUser();
+        setTimeout(() => {
+          if (user.role === 'admin') location.href = 'admin/dashboard.html';
+          else location.href = 'cliente/perfil.html';
+        }, 500);
+      } else {
+        SC.showToast('E-mail ou senha incorretos', 'error');
+      }
+    });
+
+    document.getElementById('forgotBtn').addEventListener('click', () => {
+      document.getElementById('forgotModal').classList.add('show');
+    });
+    document.getElementById('cancelForgot').addEventListener('click', () => {
+      document.getElementById('forgotModal').classList.remove('show');
+    });
+    document.getElementById('sendForgot').addEventListener('click', () => {
+      const email = document.getElementById('forgotEmail').value.trim();
+      if (!email) {
+        SC.showToast('Informe um e-mail válido', 'error');
+        return;
+      }
+      document.getElementById('forgotModal').classList.remove('show');
+      document.getElementById('successModal').classList.add('show');
+    });
+    document.getElementById('closeSuccess').addEventListener('click', () => {
+      document.getElementById('successModal').classList.remove('show');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — StudioCorte Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <span class="scissors">✂</span> Studio <span>Corte</span>
+        <small style="font-size:10px;color:#71717a;margin-left:4px">ADMIN</small>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg> Dashboard</a>
+        <a href="clientes.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> Clientes</a>
+        <a href="servicos.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Serviços</a>
+        <a href="produtos.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> Produtos</a>
+        <a href="agendamentos.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Agendamentos</a>
+        <a href="pedidos.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg> Pedidos</a>
+        <a href="financeiro.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Financeiro</a>
+        <a href="relatorios.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg> Relatórios</a>
+        <a href="marketing.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Marketing</a>
+        <a href="configuracoes.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/></svg> Configurações</a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-mini">
+          <div class="avatar">SC</div>
+          <div class="info">
+            <strong>Studio Corte</strong>
+            <span>Administrador</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main-content">
+      <div class="topbar">
+        <div>
+          <h1>Dashboard</h1>
+          <div class="subtitle">Visão geral do Studio Corte</div>
+        </div>
+        <div class="topbar-right">
+          <span style="font-size:13px;color:#a1a1aa">📅 15 de maio de 2025</span>
+          <div class="notif-wrapper">
+            <button class="notif-bell" id="notifBell" onclick="SC_ADMIN.toggleNotif()">🔔<span class="notif-badge" id="notifBadge">3</span></button>
+            <div class="notif-dropdown" id="notifDropdown"></div>
+          </div>
+          <button onclick="SC.logout()" class="btn-outline" style="padding:6px 12px;font-size:12px">Sair</button>
+        </div>
+      </div>
+
+      <div class="page-body">
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="label">👥 Total de Clientes</div>
+            <div class="value">1.248</div>
+            <div class="change up">↑ 8.6% desde o mês passado</div>
+          </div>
+          <div class="stat-card">
+            <div class="label">📅 Agendamentos Hoje</div>
+            <div class="value">24</div>
+            <div class="change up">↑ 4 agendamentos em relação a ontem</div>
+          </div>
+          <div class="stat-card">
+            <div class="label">💰 Faturamento Hoje</div>
+            <div class="value">R$ 3.860,00</div>
+            <div class="change up">↑ 12.5% em relação a ontem</div>
+          </div>
+          <div class="stat-card">
+            <div class="label">⏱ Pendentes</div>
+            <div class="value">6</div>
+            <div class="change" style="color:#a1a1aa">Aguardando confirmação ou pagamento</div>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <!-- Appointments -->
+          <div class="panel">
+            <div class="panel-header">
+              <h3>📅 Agendamentos de Hoje</h3>
+              <a href="#">Ver todos agendamentos →</a>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Horário</th>
+                  <th>Cliente</th>
+                  <th>Serviço</th>
+                  <th>Profissional</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>08:00</td>
+                  <td><div class="client-cell"><div class="avatar-sm">JS</div><div><strong>João Silva</strong><br><span style="font-size:11px;color:#71717a">(11) 98765-4321</span></div></div></td>
+                  <td>Corte + Barba</td>
+                  <td>Carlos</td>
+                  <td><span class="badge confirmed">Confirmado</span></td>
+                </tr>
+                <tr>
+                  <td>09:00</td>
+                  <td><div class="client-cell"><div class="avatar-sm">LM</div><div><strong>Lucas Mendes</strong><br><span style="font-size:11px;color:#71717a">(11) 91234-5678</span></div></div></td>
+                  <td>Corte Masculino</td>
+                  <td>Felipe</td>
+                  <td><span class="badge waiting">Em espera</span></td>
+                </tr>
+                <tr>
+                  <td>10:00</td>
+                  <td><div class="client-cell"><div class="avatar-sm">MR</div><div><strong>Mateus Rocha</strong><br><span style="font-size:11px;color:#71717a">(11) 99876-5432</span></div></div></td>
+                  <td>Corte + Barba</td>
+                  <td>Carlos</td>
+                  <td><span class="badge waiting">Em espera</span></td>
+                </tr>
+                <tr>
+                  <td>11:00</td>
+                  <td><div class="client-cell"><div class="avatar-sm">RL</div><div><strong>Rafael Lima</strong><br><span style="font-size:11px;color:#71717a">(11) 93456-7890</span></div></div></td>
+                  <td>Corte Masculino</td>
+                  <td>Felipe</td>
+                  <td><span class="badge pending">Pendente</span></td>
+                </tr>
+                <tr>
+                  <td>13:00</td>
+                  <td><div class="client-cell"><div class="avatar-sm">BF</div><div><strong>Bruno Ferreira</strong><br><span style="font-size:11px;color:#71717a">(11) 94567-8901</span></div></div></td>
+                  <td>Aparação de Barba</td>
+                  <td>Carlos</td>
+                  <td><span class="badge confirmed">Confirmado</span></td>
+                </tr>
+                <tr>
+                  <td>14:00</td>
+                  <td><div class="client-cell"><div class="avatar-sm">PC</div><div><strong>Pedro Costa</strong><br><span style="font-size:11px;color:#71717a">(11) 97654-3210</span></div></div></td>
+                  <td>Corte Masculino</td>
+                  <td>Felipe</td>
+                  <td><span class="badge confirmed">Confirmado</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Right column -->
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <div class="panel">
+              <div class="panel-header">
+                <h3>⚡ Atividade Recente</h3>
+                <a href="#">Ver todas atividades →</a>
+              </div>
+              <div class="activity-list">
+                <div class="activity-item">
+                  <div class="dot"></div>
+                  <div class="content">
+                    <strong>Novo agendamento realizado</strong>
+                    <span>João Silva agendou Corte + Barba</span>
+                  </div>
+                  <div class="time">08:30</div>
+                </div>
+                <div class="activity-item">
+                  <div class="dot" style="background:#3b82f6"></div>
+                  <div class="content">
+                    <strong>Novo cliente cadastrado</strong>
+                    <span>Lucas Almeida foi adicionado</span>
+                  </div>
+                  <div class="time">07:15</div>
+                </div>
+                <div class="activity-item">
+                  <div class="dot" style="background:#22c55e"></div>
+                  <div class="content">
+                    <strong>Pagamento recebido</strong>
+                    <span>R$ 120,00 de Mateus Rocha</span>
+                  </div>
+                  <div class="time">Ontem, 18:45</div>
+                </div>
+                <div class="activity-item">
+                  <div class="dot" style="background:#a855f7"></div>
+                  <div class="content">
+                    <strong>Serviço concluído</strong>
+                    <span>Corte + Barba de Rafael Lima</span>
+                  </div>
+                  <div class="time">Ontem, 17:30</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-header">
+                <h3>★ Serviços Mais Populares</h3>
+                <a href="#">Ver todos serviços →</a>
+              </div>
+              <div class="popular-list">
+                <div class="popular-item">
+                  <div class="left">✂ Corte Masculino</div>
+                  <div class="pct">512 agendamentos · 38%</div>
+                </div>
+                <div class="popular-item">
+                  <div class="left">🧔 Corte + Barba</div>
+                  <div class="pct">389 agendamentos · 29%</div>
+                </div>
+                <div class="popular-item">
+                  <div class="left">✂ Aparação de Barba</div>
+                  <div class="pct">210 agendamentos · 16%</div>
+                </div>
+                <div class="popular-item">
+                  <div class="left">👦 Corte Infantil</div>
+                  <div class="pct">137 agendamentos · 10%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/admin-common.js"></script>
+  <script>
+    if (!SC.isLoggedIn() || SC.getUser().role !== 'admin') {
+      location.href = '../login.html';
+    }
+    SC_ADMIN.renderNotifications();
+  </script>
+</body>
+</html>

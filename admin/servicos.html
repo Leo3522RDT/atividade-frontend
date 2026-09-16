@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Serviços — StudioCorte Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo"><span class="scissors">✂</span> Studio <span>Corte</span></div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg> Dashboard</a>
+        <a href="clientes.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> Clientes</a>
+        <a href="servicos.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Serviços</a>
+        <a href="produtos.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> Produtos</a>
+        <a href="agendamentos.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Agendamentos</a>
+        <a href="pedidos.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg> Pedidos</a>
+        <a href="financeiro.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Financeiro</a>
+        <a href="relatorios.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg> Relatórios</a>
+        <a href="marketing.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Marketing</a>
+        <a href="configuracoes.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/></svg> Configurações</a>
+      </nav>
+      <div class="sidebar-footer"><div class="user-mini"><div class="avatar">AF</div><div class="info"><strong>Admin Felipe</strong><span>Administrador</span></div></div></div>
+    </aside>
+
+    <main class="main-content">
+      <div class="topbar">
+        <div><h1>Serviços</h1><div class="subtitle">Gerencie os serviços oferecidos</div></div>
+        <div class="topbar-right">
+          <div class="notif-wrapper">
+            <button class="notif-bell" id="notifBell" onclick="SC_ADMIN.toggleNotif()">🔔<span class="notif-badge" id="notifBadge">3</span></button>
+            <div class="notif-dropdown" id="notifDropdown"></div>
+          </div>
+          <button class="btn-red" id="btnAdd" style="padding:10px 16px">+ Novo Serviço</button>
+          <button onclick="SC.logout()" class="btn-outline" style="padding:6px 12px;font-size:12px">Sair</button>
+        </div>
+      </div>
+
+      <div class="page-body">
+        <div class="panel">
+          <table>
+            <thead><tr><th>Serviço</th><th>Duração</th><th>Preço</th><th>Status</th><th>Ações</th></tr></thead>
+            <tbody id="svcTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="svcModal">
+    <div class="modal">
+      <h3 id="modalTitle">Novo Serviço</h3>
+      <form id="svcForm">
+        <div class="form-group"><label>Nome</label><input type="text" id="svcName" required /></div>
+        <div class="form-group"><label>Duração (min)</label><input type="number" id="svcDuration" value="30" min="15" required /></div>
+        <div class="form-group"><label>Preço (R$)</label><input type="number" id="svcPrice" step="0.01" required /></div>
+        <div class="form-group">
+          <label>Foto / Imagem do serviço</label>
+          <input type="url" id="svcImgUrl" placeholder="https://exemplo.com/imagem.jpg" />
+          <input type="file" id="svcImgFile" accept="image/*" style="margin-top:8px" />
+          <img id="svcImgPreview" class="img-preview" alt="Preview" />
+          <p style="font-size:11px;color:#71717a;margin-top:6px">Envie uma foto ou modelo 3D (imagem). O preview aparece abaixo.</p>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-secondary" onclick="document.getElementById('svcModal').classList.remove('show')">Cancelar</button>
+          <button type="submit" class="btn-primary" style="width:auto;padding:10px 20px">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/admin-common.js"></script>
+  <script>
+    if (!SC.isLoggedIn() || SC.getUser().role !== 'admin') location.href = '../login.html';
+    SC_ADMIN.renderNotifications();
+
+    const DEFAULT = [
+      { id:1, name:'Corte Masculino', duration:30, price:59.90, active:true, img:'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=100&h=100&fit=crop' },
+      { id:2, name:'Fade/Degradê', duration:40, price:64.90, active:true, img:'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=100&h=100&fit=crop' },
+      { id:3, name:'Barba + Contorno', duration:25, price:49.90, active:true, img:'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=100&h=100&fit=crop' },
+      { id:4, name:'Corte Feminino', duration:45, price:69.90, active:true, img:'https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=100&h=100&fit=crop' },
+      { id:5, name:'Coloração/Luzes', duration:90, price:129.90, active:true, img:'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=100&h=100&fit=crop' },
+      { id:6, name:'Corte Infantil', duration:25, price:49.90, active:true, img:'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=100&h=100&fit=crop' }
+    ];
+
+    function getSvc() { return JSON.parse(localStorage.getItem('sc_services') || JSON.stringify(DEFAULT)); }
+    function saveSvc(l) { localStorage.setItem('sc_services', JSON.stringify(l)); }
+
+    let editingId = null;
+
+    function render() {
+      document.getElementById('svcTable').innerHTML = getSvc().map(s => `
+        <tr>
+          <td>
+            <div style="display:flex;align-items:center;gap:12px">
+              <img src="${s.img || 'https://via.placeholder.com/44/222/666?text=S'}" alt="" style="width:44px;height:44px;border-radius:8px;object-fit:cover;background:#222" onerror="this.src='https://via.placeholder.com/44/222/666?text=S'" />
+              <strong>${s.name}</strong>
+            </div>
+          </td>
+          <td>${s.duration} min</td>
+          <td>${SC.formatMoney(s.price)}</td>
+          <td><span class="badge ${s.active?'confirmed':'canceled'}">${s.active?'Ativo':'Inativo'}</span></td>
+          <td><div class="actions">
+            <button onclick="editSvc(${s.id})">✏️</button>
+            <button class="delete" onclick="delSvc(${s.id})">🗑️</button>
+          </div></td>
+        </tr>
+      `).join('');
+    }
+
+    document.getElementById('btnAdd').onclick = () => {
+      editingId = null;
+      document.getElementById('modalTitle').textContent = 'Novo Serviço';
+      document.getElementById('svcForm').reset();
+      document.getElementById('svcImgPreview').classList.remove('show');
+      document.getElementById('svcModal').classList.add('show');
+    };
+
+    window.editSvc = (id) => {
+      const s = getSvc().find(x => x.id === id);
+      if (!s) return;
+      editingId = id;
+      document.getElementById('modalTitle').textContent = 'Editar Serviço';
+      document.getElementById('svcName').value = s.name;
+      document.getElementById('svcDuration').value = s.duration;
+      document.getElementById('svcPrice').value = s.price;
+      document.getElementById('svcImgUrl').value = s.img || '';
+      const preview = document.getElementById('svcImgPreview');
+      if (s.img) {
+        preview.src = s.img;
+        preview.classList.add('show');
+      } else {
+        preview.classList.remove('show');
+      }
+      document.getElementById('svcModal').classList.add('show');
+    };
+
+    window.delSvc = (id) => {
+      if (!confirm('Excluir serviço?')) return;
+      saveSvc(getSvc().filter(s => s.id !== id));
+      SC.showToast('Serviço removido');
+      render();
+    };
+
+    // Image preview handlers
+    document.getElementById('svcImgFile').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(ev) {
+        const preview = document.getElementById('svcImgPreview');
+        preview.src = ev.target.result;
+        preview.classList.add('show');
+        document.getElementById('svcImgUrl').value = ev.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+    document.getElementById('svcImgUrl').addEventListener('input', function() {
+      const preview = document.getElementById('svcImgPreview');
+      if (this.value) {
+        preview.src = this.value;
+        preview.classList.add('show');
+      } else {
+        preview.classList.remove('show');
+      }
+    });
+
+    document.getElementById('svcForm').onsubmit = (e) => {
+      e.preventDefault();
+      let img = document.getElementById('svcImgUrl').value.trim();
+      if (!img) img = 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=100&h=100&fit=crop';
+      const data = {
+        name: document.getElementById('svcName').value.trim(),
+        duration: parseInt(document.getElementById('svcDuration').value),
+        price: parseFloat(document.getElementById('svcPrice').value),
+        active: true,
+        img: img
+      };
+      let list = getSvc();
+      if (editingId) {
+        list = list.map(s => s.id === editingId ? { ...s, ...data } : s);
+        SC.showToast('Serviço atualizado');
+      } else {
+        data.id = Date.now();
+        list.push(data);
+        SC.showToast('Serviço adicionado');
+      }
+      saveSvc(list);
+      document.getElementById('svcModal').classList.remove('show');
+      document.getElementById('svcForm').reset();
+      document.getElementById('svcImgPreview').classList.remove('show');
+      render();
+    };
+
+    render();
+  </script>
+</body>
+</html>

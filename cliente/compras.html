@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minhas Compras — StudioCorte</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo"><span class="scissors">✂</span> Studio <span>Corte</span></div>
+      <nav class="sidebar-nav">
+        <a href="perfil.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Perfil</a>
+        <a href="agendamentos.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Agendamentos</a>
+        <a href="favoritos.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Favoritos</a>
+        <a href="compras.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg> Compras</a>
+        <a href="carteira.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> Carteira</a>
+        <a href="configuracoes.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/></svg> Configurações</a>
+      </nav>
+      <div class="sidebar-footer"><div class="user-mini"><div class="avatar">LA</div><div class="info"><strong>Lucas Almeida</strong><span>Cliente Premium</span></div></div></div>
+    </aside>
+
+    <main class="main-content">
+      <div class="topbar">
+        <div><h1>Minhas Compras</h1><div class="subtitle">Histórico de produtos adquiridos</div></div>
+        <div class="topbar-right">
+          <button onclick="SC_CLIENT.logout()" class="btn-outline" style="padding:6px 12px;font-size:12px">Sair</button>
+        </div>
+      </div>
+
+      <div class="page-body">
+        <div class="stats-grid" style="margin-bottom:20px">
+          <div class="stat-card"><div class="label">🛍️ Total gasto</div><div class="value">R$ 487,60</div></div>
+          <div class="stat-card"><div class="label">📦 Pedidos</div><div class="value">8</div></div>
+          <div class="stat-card"><div class="label">⭐ Pontos ganhos</div><div class="value">240</div></div>
+        </div>
+
+        <div class="panel">
+          <table>
+            <thead><tr><th>Pedido</th><th>Produtos</th><th>Total</th><th>Data</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>#1042</strong></td>
+                <td>Pomada Modeladora, Shampoo, Óleo para Barba</td>
+                <td>R$ 144,70</td>
+                <td>15/05/2025</td>
+                <td><span class="badge waiting">Em preparação</span></td>
+              </tr>
+              <tr>
+                <td><strong>#1035</strong></td>
+                <td>Kit Pente + Escova</td>
+                <td>R$ 55,00</td>
+                <td>28/04/2025</td>
+                <td><span class="badge confirmed">Entregue</span></td>
+              </tr>
+              <tr>
+                <td><strong>#1028</strong></td>
+                <td>Shampoo Anticaspa + Pomada</td>
+                <td>R$ 80,00</td>
+                <td>10/04/2025</td>
+                <td><span class="badge confirmed">Entregue</span></td>
+              </tr>
+              <tr>
+                <td><strong>#1019</strong></td>
+                <td>Óleo para Barba</td>
+                <td>R$ 35,00</td>
+                <td>22/03/2025</td>
+                <td><span class="badge confirmed">Entregue</span></td>
+              </tr>
+              <tr>
+                <td><strong>#1012</strong></td>
+                <td>Pomada Modeladora</td>
+                <td>R$ 45,00</td>
+                <td>05/03/2025</td>
+                <td><span class="badge confirmed">Entregue</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="../js/app.js"></script>
+  <script src="../js/client-common.js"></script>
+  <script>SC_CLIENT.ensureClient();</script>
+</body>
+</html>

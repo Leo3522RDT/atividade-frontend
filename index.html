@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudioCorte — Seu próximo corte, pensado antes de sentar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* Extra sections for complete homepage */
+    .about-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      padding: 80px 40px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .about-section img {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      height: 380px;
+      object-fit: cover;
+    }
+    .about-section h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+    .about-section p {
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding: 60px 40px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .feature-card .icon {
+      font-size: 32px;
+      margin-bottom: 14px;
+    }
+    .feature-card h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+    .feature-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .testimonials {
+      padding: 60px 40px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .testi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .testi-card .stars { color: #eab308; margin-bottom: 12px; font-size: 14px; }
+    .testi-card p { font-size: 14px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+    .testi-card .author { display: flex; align-items: center; gap: 10px; }
+    .testi-card .author .av {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: #333; display: flex; align-items: center; justify-content: center;
+      font-weight: 600; font-size: 14px;
+    }
+    .cta-section {
+      text-align: center;
+      padding: 80px 40px;
+      background: linear-gradient(180deg, transparent, #111);
+      border-top: 1px solid var(--border);
+    }
+    .cta-section h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .cta-section p {
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      font-size: 16px;
+    }
+    .full-footer {
+      background: #0d0d0d;
+      border-top: 1px solid var(--border);
+      padding: 48px 40px 24px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 32px;
+      max-width: 1280px;
+      margin: 0 auto 32px;
+    }
+    .footer-grid h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 14px;
+      color: white;
+    }
+    .footer-grid a, .footer-grid p {
+      display: block;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .footer-grid a:hover { color: var(--red); }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-dim);
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    @media (max-width: 900px) {
+      .about-section, .features, .testi-grid, .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="public-header">
+    <a href="index.html" class="logo">
+      <span class="scissors">✂</span> Studio<span>Corte</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#servicos">Serviços</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#depoimentos">Avaliações</a>
+      <a href="agendar.html">Marcar Horário</a>
+    </nav>
+    <div class="header-actions">
+      <a href="login.html" class="btn-outline">Entrar na Conta</a>
+      <a href="agendar.html" class="btn-red">Agendar agora →</a>
+    </div>
+  </header>
+
+  <!-- Hero (igual à imagem) -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Seu próximo corte,<br><span>pensado</span> antes de<br>sentar na cadeira.</h1>
+      <p>Ambiente profissional, estilo atual e um atendimento feito sob medida para você.</p>
+      <div class="hero-btns">
+        <a href="#servicos" class="btn-red" style="padding:12px 22px;font-size:14px">Ver serviços ✂</a>
+        <a href="agendar.html" class="btn-outline" style="padding:12px 22px;font-size:14px">Agendar horário 📅</a>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=800&h=500&fit=crop" alt="Interior da barbearia StudioCorte" 
+           onerror="this.src='https://picsum.photos/800/500?grayscale'" />
+      <div class="hero-badge">
+        <div class="icon">🪑</div>
+        <div>
+          <strong>Profissionalismo que se vê. Experiência que se sente.</strong>
+          <p>Cortes modernos, técnicas precisas e atenção aos detalhes.</p>
+          <p style="margin-top:6px"><span class="dot"></span>Ambiente premium</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="feature-card">
+      <div class="icon">⚡</div>
+      <h3>Agendamento Rápido</h3>
+      <p>Marque seu horário online em menos de 1 minuto, sem ligação e sem espera.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🎯</div>
+      <h3>Profissionais Expert</h3>
+      <p>Barbeiros especializados em fade, degradê, barba e cortes modernos.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🏆</div>
+      <h3>Ambiente Premium</h3>
+      <p>Espaço climatizado, produtos de alta qualidade e atendimento personalizado.</p>
+    </div>
+  </section>
+
+  <!-- Serviços -->
+  <section class="section" id="servicos">
+    <div class="section-header">
+      <h2>O que fazemos e quanto custa</h2>
+      <p>Serviços profissionais com qualidade premium e preço justo.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="icon">✂</div>
+        <h3>Corte Masculino</h3>
+        <p>Corte moderno e personalizado com acabamento impecável e estilo que valoriza sua imagem.</p>
+        <div class="price">R$ 59,90</div>
+      </div>
+      <div class="service-card">
+        <div class="icon">✂</div>
+        <h3>Fade/Degradê</h3>
+        <p>Degradê preciso em qualquer estilo: low fade, mid fade ou high fade com acabamento perfeito.</p>
+        <div class="price">R$ 64,90</div>
+      </div>
+      <div class="service-card">
+        <div class="icon">🧔</div>
+        <h3>Barba + Contorno</h3>
+        <p>Aparagem e desenho de barba com contorno facial para destacar sua masculinidade.</p>
+        <div class="price">R$ 49,90</div>
+      </div>
+      <div class="service-card">
+        <div class="icon">👩</div>
+        <h3>Corte Feminino</h3>
+        <p>Corte feminino sob medida para todos os tipos de cabelo, com estilo e leveza.</p>
+        <div class="price">R$ 69,90</div>
+      </div>
+      <div class="service-card">
+        <div class="icon">🎨</div>
+        <h3>Coloração/Luzes</h3>
+        <p>Coloração profissional e luzes personalizadas para realçar sua cor e estilo.</p>
+        <div class="price">R$ 129,90</div>
+      </div>
+      <div class="service-card">
+        <div class="icon">👦</div>
+        <h3>Corte Infantil</h3>
+        <p>Corte infantil tranquilo e divertido, ambiente seguro para os pequenos.</p>
+        <div class="price">R$ 49,90</div>
+      </div>
+    </div>
+
+    <h3 class="gallery-title" id="galeria">Lista de cortes</h3>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=300&h=300&fit=crop" alt="Fade médio" onerror="this.src='https://picsum.photos/300/300?random=1'" />
+        <div class="info"><strong>Fade médio</strong><span>Clássico e versátil</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=300&h=300&fit=crop" alt="Pompadour" onerror="this.src='https://picsum.photos/300/300?random=2'" />
+        <div class="info"><strong>Pompadour</strong><span>Volume e elegância</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=300&h=300&fit=crop" alt="Undercut" onerror="this.src='https://picsum.photos/300/300?random=3'" />
+        <div class="info"><strong>Undercut</strong><span>Moderno e marcante</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=300&h=300&fit=crop" alt="Buzz cut" onerror="this.src='https://picsum.photos/300/300?random=4'" />
+        <div class="info"><strong>Buzz cut</strong><span>Simples e poderoso</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=300&h=300&fit=crop" alt="Longo texturizado" onerror="this.src='https://picsum.photos/300/300?random=5'" />
+        <div class="info"><strong>Longo texturizado</strong><span>Estilo e personalidade</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=300&h=300&fit=crop" alt="Bob feminino" onerror="this.src='https://picsum.photos/300/300?random=6'" />
+        <div class="info"><strong>Bob feminino</strong><span>Chique e atual</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sobre -->
+  <section class="about-section" id="sobre">
+    <div>
+      <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=700&h=500&fit=crop" alt="Barbeiro trabalhando" onerror="this.src='https://picsum.photos/700/500'" />
+    </div>
+    <div>
+      <h2>Sobre o StudioCorte</h2>
+      <p>Fundado em 2018 no coração de São Paulo, o StudioCorte nasceu com a missão de elevar o padrão de atendimento masculino e feminino.</p>
+      <p>Nossos profissionais são treinados continuamente nas técnicas mais modernas de fade, texturização, barba e coloração.</p>
+      <p>Ambiente clean, climatizado, com produtos premium e uma experiência pensada em cada detalhe — do momento em que você agenda até o resultado final no espelho.</p>
+      <a href="agendar.html" class="btn-red" style="display:inline-block;margin-top:16px;padding:12px 24px">Conhecer serviços</a>
+    </div>
+  </section>
+
+  <!-- Depoimentos -->
+  <section class="testimonials" id="depoimentos">
+    <div class="section-header">
+      <h2>O que nossos clientes dizem</h2>
+      <p>Mais de 1.200 clientes satisfeitos.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Melhor fade que já fiz na vida. O Carlos é muito preciso e o ambiente é top. Já virei cliente fixo."</p>
+        <div class="author">
+          <div class="av">JS</div>
+          <div>
+            <strong style="font-size:13px">João Silva</strong><br>
+            <span style="font-size:12px;color:#71717a">Cliente desde 2023</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Atendimento impecável. Agendei pelo site, cheguei e já fui atendido na hora. Recomendo demais."</p>
+        <div class="author">
+          <div class="av">MR</div>
+          <div>
+            <strong style="font-size:13px">Mateus Rocha</strong><br>
+            <span style="font-size:12px;color:#71717a">Cliente Premium</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Levei meu filho e o corte infantil foi super tranquilo. Ambiente limpo e profissionais atenciosos."</p>
+        <div class="author">
+          <div class="av">AF</div>
+          <div>
+            <strong style="font-size:13px">Ana Ferreira</strong><br>
+            <span style="font-size:12px;color:#71717a">Mãe de cliente</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Pronto para o seu próximo corte?</h2>
+    <p>Agende agora e garanta o melhor horário do dia.</p>
+    <a href="agendar.html" class="btn-red" style="padding:14px 32px;font-size:15px">Agendar horário agora →</a>
+  </section>
+
+  <!-- Footer completo -->
+  <footer class="full-footer">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="margin-bottom:12px">
+          <span class="scissors">✂</span> Studio<span>Corte</span>
+        </div>
+        <p>Barbearia premium em São Paulo.<br>Estilo, precisão e atendimento de excelência.</p>
+        <p style="margin-top:12px">📍 Rua das Tesouras, 123 — Centro<br>São Paulo/SP</p>
+        <p>📞 (11) 99999-0000</p>
+      </div>
+      <div>
+        <h4>Navegação</h4>
+        <a href="#servicos">Serviços</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#depoimentos">Avaliações</a>
+        <a href="login.html">Entrar</a>
+      </div>
+      <div>
+        <h4>Serviços</h4>
+        <a href="agendar.html">Corte Masculino</a>
+        <a href="agendar.html">Fade / Degradê</a>
+        <a href="agendar.html">Barba + Contorno</a>
+        <a href="agendar.html">Corte Feminino</a>
+        <a href="agendar.html">Coloração</a>
+      </div>
+      <div>
+        <h4>Horário</h4>
+        <p>Seg – Sáb: 09h – 20h</p>
+        <p>Domingo: 10h – 16h</p>
+        <p style="margin-top:12px">WhatsApp disponível</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 StudioCorte — Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agendar Horário — StudioCorte</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="public-header">
+    <a href="index.html" class="logo"><span class="scissors">✂</span> Studio<span>Corte</span></a>
+    <nav class="nav-links">
+      <a href="index.html">Início</a>
+      <a href="servicos.html">Serviços</a>
+      <a href="agendar.html" class="active" style="color:var(--red)">Agendar</a>
+    </nav>
+    <div class="header-actions">
+      <a href="login.html" class="btn-outline">Entrar na Conta</a>
+    </div>
+  </header>
+
+  <section class="section" style="max-width:640px">
+    <div class="section-header">
+      <h2>Marcar Horário</h2>
+      <p>Escolha o serviço, data e horário. Confirmaremos em instantes.</p>
+    </div>
+
+    <div class="settings-card">
+      <form id="bookingForm">
+        <div class="form-group">
+          <label>Seu nome</label>
+          <input type="text" id="bkName" required placeholder="Nome completo" />
+        </div>
+        <div class="form-group">
+          <label>Telefone / WhatsApp</label>
+          <input type="tel" id="bkPhone" required placeholder="(11) 99999-0000" />
+        </div>
+        <div class="form-group">
+          <label>Serviço</label>
+          <select id="bkService" required>
+            <option value="">Selecione...</option>
+            <option>Corte Masculino — R$ 59,90</option>
+            <option>Fade/Degradê — R$ 64,90</option>
+            <option>Barba + Contorno — R$ 49,90</option>
+            <option>Corte + Barba — R$ 109,80</option>
+            <option>Corte Feminino — R$ 69,90</option>
+            <option>Coloração/Luzes — R$ 129,90</option>
+            <option>Corte Infantil — R$ 49,90</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Profissional (opcional)</label>
+          <select id="bkPro">
+            <option>Qualquer disponível</option>
+            <option>Carlos</option>
+            <option>Felipe</option>
+            <option>Rafael Lima</option>
+          </select>
+        </div>
+        <div class="booking-grid">
+          <div class="form-group">
+            <label>Data</label>
+            <input type="date" id="bkDate" required />
+          </div>
+          <div class="form-group">
+            <label>Horário</label>
+            <select id="bkTime" required>
+              <option value="">Selecione...</option>
+              <option>09:00</option><option>09:30</option><option>10:00</option><option>10:30</option>
+              <option>11:00</option><option>11:30</option><option>13:00</option><option>13:30</option>
+              <option>14:00</option><option>14:30</option><option>15:00</option><option>15:30</option>
+              <option>16:00</option><option>16:30</option><option>17:00</option><option>17:30</option>
+              <option>18:00</option><option>18:30</option><option>19:00</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Observações</label>
+          <textarea id="bkNotes" rows="3" placeholder="Alguma preferência ou detalhe?" style="resize:vertical"></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="margin-top:8px">Confirmar Agendamento</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Success Modal -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal" style="text-align:center">
+      <div style="font-size:48px;margin-bottom:12px">✅</div>
+      <h3>Agendamento enviado!</h3>
+      <p style="font-size:14px;color:#a1a1aa;margin:16px 0;line-height:1.7">
+        Seu pedido de horário foi enviado para o StudioCorte.<br><br>
+        O proprietário confirmará e responderá pelos contatos permitidos para notificações importantes (WhatsApp e e-mail).
+      </p>
+      <button class="btn-primary" style="width:auto;padding:10px 24px" onclick="location.href='index.html'">Voltar ao início</button>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    // Set min date to today
+    document.getElementById('bkDate').min = new Date().toISOString().split('T')[0];
+
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Save to localStorage as pending appointment
+      const appts = JSON.parse(localStorage.getItem('sc_appts') || '[]');
+      appts.push({
+        id: Date.now(),
+        date: document.getElementById('bkDate').value,
+        time: document.getElementById('bkTime').value,
+        client: document.getElementById('bkName').value,
+        phone: document.getElementById('bkPhone').value,
+        service: document.getElementById('bkService').value,
+        pro: document.getElementById('bkPro').value,
+        notes: document.getElementById('bkNotes').value,
+        status: 'Pendente'
+      });
+      localStorage.setItem('sc_appts', JSON.stringify(appts));
+      document.getElementById('successModal').classList.add('show');
+    });
+  </script>
+</body>
+</html>
