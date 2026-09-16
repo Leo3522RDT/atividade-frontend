@@ -1,4 +1,5 @@
-# StudioCorte — Sistema Completo de Barbearia (Atividade senac)
+# StudioCorte — Sistema Completo de Barbearia 
+# (Atividade senac)
 
 Site e painel administrativo **fiel às imagens** fornecidas, dark theme, 100% funcional.
 
